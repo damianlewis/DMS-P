@@ -11,7 +11,12 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::resource('suppliers', 'SuppliersController');
+Route::resource('vehicles', 'VehiclesController');
+Route::resource('vehiclemakes', 'VehicleMakesController');
+Route::resource('vehiclemodels', 'VehicleModelsController');
+Route::resource('vehiclecategories', 'VehicleCategoriesController');
+
+Route::get('suppliers/{suppliers}/vehicles', array('as'=>'suppliers.vehicles', 'uses'=>'SuppliersController@showVehicles'));
+Route::get('suppliers/{suppliers}/vehicles/create', array('as'=>'suppliers.vehicles.create', 'uses'=>'SuppliersController@createVehicle'));
+Route::post('suppliers/vehicles', array('as'=>'suppliers.vehicles.store', 'uses'=>'SuppliersController@storeVehicle'));
