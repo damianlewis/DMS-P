@@ -21,11 +21,51 @@ class CreateDmspTables extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('days', function(Blueprint $table)
+        Schema::create('staff_roles', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('day')->unique();
+            $table->string('role')->unique();
+            $table->text('description');
             $table->timestamps();
+        });
+
+        // Schema::create('days', function(Blueprint $table)
+        // {
+        //     $table->increments('id');
+        //     $table->string('day')->unique();
+        //     $table->timestamps();
+        // });
+
+        // Memebrs
+
+        Schema::create('member_roles', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->string('role')->unique();
+            $table->text('description');
+            $table->timestamps();
+        });
+
+        Schema::create('members', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->integer('member_role_id')->unsigned();
+            $table->integer('honorific_id')->unsigned()->nullable();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email')->unique();
+            $table->string('username')->unique();
+            $table->string('password');
+            $table->boolean('status');
+            $table->timestamps();
+
+            $table->foreign('member_role_id')
+                ->references('id')->on('member_roles')
+                ->onDelete('restrict');
+                
+            $table->foreign('honorific_id')
+                ->references('id')->on('honorifics')
+                ->onDelete('set null');
         });
 
         // Suppliers
@@ -43,18 +83,10 @@ class CreateDmspTables extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('suppliers_staff_roles', function(Blueprint $table)
-        {
-            $table->increments('id');
-            $table->string('role')->unique();
-            $table->text('description');
-            $table->timestamps();
-        });
-
         Schema::create('suppliers_staff', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('staff_role_id')->unsigned()->nullable();
+            $table->integer('staff_role_id')->unsigned();
             $table->integer('supplier_id')->unsigned()->nullable();
             $table->integer('honorific_id')->unsigned()->nullable();
             $table->string('first_name');
@@ -63,8 +95,8 @@ class CreateDmspTables extends Migration {
             $table->timestamps();
 
             $table->foreign('staff_role_id')
-                ->references('id')->on('suppliers_staff_roles')
-                ->onDelete('set null');
+                ->references('id')->on('staff_roles')
+                ->onDelete('restrict');
 
             $table->foreign('supplier_id')
                 ->references('id')->on('suppliers')
@@ -85,8 +117,13 @@ class CreateDmspTables extends Migration {
         Schema::create('vehicle_models', function(Blueprint $table)
         {
             $table->increments('id');
+            $table->integer('vehicle_make_id')->unsigned()->nullable();
             $table->string('model')->unique();
             $table->timestamps();
+
+            $table->foreign('vehicle_make_id')
+                ->references('id')->on('vehicle_makes')
+                ->onDelete('set null');
         });
 
         Schema::create('vehicle_categories', function(Blueprint $table)
@@ -100,7 +137,7 @@ class CreateDmspTables extends Migration {
         {
             $table->increments('id');
             $table->integer('supplier_id')->unsigned()->nullable();
-            $table->integer('vehicle_make_id')->unsigned()->nullable();
+            // $table->integer('vehicle_make_id')->unsigned()->nullable();
             $table->integer('vehicle_model_id')->unsigned()->nullable();
             $table->integer('vehicle_category_id')->unsigned()->nullable();
             $table->string('registration_number')->unique();
@@ -110,14 +147,14 @@ class CreateDmspTables extends Migration {
                 ->references('id')->on('suppliers')
                 ->onDelete('set null');
 
-            $table->foreign('vehicle_make_id')
-                ->references('id')->on('vehicle_makes')
-                ->onDelete('set null');
+            // $table->foreign('vehicle_make_id')
+            //     ->references('id')->on('vehicle_makes')
+            //     ->onDelete('set null');
                 
             $table->foreign('vehicle_model_id')
                 ->references('id')->on('vehicle_models')
                 ->onDelete('set null');
-                
+
             $table->foreign('vehicle_category_id')
                 ->references('id')->on('vehicle_categories')
                 ->onDelete('set null');
@@ -136,14 +173,16 @@ class CreateDmspTables extends Migration {
             $table->string('post_code');
             $table->string('latitude');
             $table->string('longitude');
-            $table->string('capacity');
+            $table->integer('capacity')->unsigned();
+            $table->text('description');
             $table->timestamps();
         });
 
-        Schema::create('storage_categories', function(Blueprint $table)
+        Schema::create('storage_area_categories', function(Blueprint $table)
         {
             $table->increments('id');
             $table->string('category')->unique();
+            $table->text('description');
             $table->timestamps();
         });
 
@@ -151,74 +190,45 @@ class CreateDmspTables extends Migration {
         {
             $table->increments('id');
             $table->integer('facility_id')->unsigned();
-            $table->integer('category_id')->unsigned()->nullable();
-            $table->integer('allocation');
+            $table->integer('storage_area_category_id')->unsigned()->nullable();
+            $table->integer('allocation')->unsigned();
             $table->timestamps();
 
             $table->foreign('facility_id')
                 ->references('id')->on('facilities')
                 ->onDelete('restrict');
 
-            $table->foreign('category_id')
-                ->references('id')->on('storage_categories')
+            $table->foreign('storage_area_category_id')
+                ->references('id')->on('storage_area_categories')
                 ->onDelete('set null');
+
+            // $table->foreign('day_id')
+            //     ->references('id')->on('days')
+            //     ->onDelete('set null');
         });
 
-        Schema::create('booking_slot', function(Blueprint $table)
+        Schema::create('time_slots', function(Blueprint $table)
         {
             $table->increments('id');
             $table->integer('facility_id')->unsigned();
-            $table->integer('day_id')->unsigned()->nullable();
+            // $table->integer('day_id')->unsigned()->nullable();
             $table->time('start_time');
             $table->time('end_time');
+            // $table->boolean('booked');
             $table->timestamps();
 
             $table->foreign('facility_id')
                 ->references('id')->on('facilities')
                 ->onDelete('restrict');
 
-            $table->foreign('day_id')
-                ->references('id')->on('days')
-                ->onDelete('set null');
-        });
-
-        Schema::create('facility_member_roles', function(Blueprint $table)
-        {
-            $table->increments('id');
-            $table->string('role')->unique();
-            $table->text('description');
-            $table->timestamps();
-        });
-
-        Schema::create('facility_members', function(Blueprint $table)
-        {
-            $table->increments('id');
-            $table->integer('facility_id')->unsigned()->nullable();
-            $table->integer('member_role_id')->unsigned()->nullable();
-            $table->integer('honorific_id')->unsigned()->nullable();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email')->unique();
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->timestamps();
-
-            $table->foreign('facility_id')
-                ->references('id')->on('facilities')
-                ->onDelete('set null');
-
-            $table->foreign('member_role_id')
-                ->references('id')->on('facility_member_roles')
-                ->onDelete('set null');
-                
-            $table->foreign('honorific_id')
-                ->references('id')->on('honorifics')
-                ->onDelete('set null');
+            // $table->foreign('day_id')
+            //     ->references('id')->on('days')
+            //     ->onDelete('set null');
         });
         
         // Deliveries
 
-        Schema::create('delivery_status', function(Blueprint $table)
+        Schema::create('delivery_statuses', function(Blueprint $table)
         {
             $table->increments('id');
             $table->string('status')->unique();
@@ -228,32 +238,28 @@ class CreateDmspTables extends Migration {
         Schema::create('deliveries', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('booking_slot_id')->unsigned();
             $table->integer('delivery_status_id')->unsigned();
+            $table->date('date');
+            $table->text('note');
             $table->timestamps();
 
-            $table->foreign('booking_slot_id')
-                ->references('id')->on('booking_slot')
-                ->onDelete('restrict');
-
             $table->foreign('delivery_status_id')
-                ->references('id')->on('delivery_status')
+                ->references('id')->on('delivery_statuses')
                 ->onDelete('restrict');
         });
 
-        Schema::create('deliveries_facilities', function(Blueprint $table)
+        Schema::create('time_slots_deliveries', function(Blueprint $table)
         {
+            $table->integer('time_slot_id')->unsigned();
             $table->integer('delivery_id')->unsigned();
-            $table->integer('facility_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('time_slot_id')
+                ->references('id')->on('time_slots')
+                ->onDelete('restrict');
 
             $table->foreign('delivery_id')
                 ->references('id')->on('deliveries')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
-            $table->foreign('facility_id')
-                ->references('id')->on('facilities')
                 ->onDelete('cascade');
         });
 
@@ -265,12 +271,11 @@ class CreateDmspTables extends Migration {
 
             $table->foreign('delivery_id')
                 ->references('id')->on('deliveries')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->onDelete('cascade');
 
             $table->foreign('staff_id')
                 ->references('id')->on('suppliers_staff')
-                ->onDelete('cascade');
+                ->onDelete('restrict');
         });
 
         Schema::create('deliveries_vehicles', function(Blueprint $table)
@@ -281,12 +286,11 @@ class CreateDmspTables extends Migration {
 
             $table->foreign('delivery_id')
                 ->references('id')->on('deliveries')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->onDelete('cascade');
 
             $table->foreign('vehicle_id')
                 ->references('id')->on('vehicles')
-                ->onDelete('cascade');
+                ->onDelete('restrict');
         });
     }
 
@@ -299,23 +303,23 @@ class CreateDmspTables extends Migration {
     {
         Schema::drop('deliveries_vehicles');
         Schema::drop('deliveries_staff');
-        Schema::drop('deliveries_facilities');
+        Schema::drop('time_slots_deliveries');
         Schema::drop('deliveries');
-        Schema::drop('delivery_status');
-        Schema::drop('facility_members');
-        Schema::drop('facility_member_roles');
-        Schema::drop('booking_slot');
+        Schema::drop('delivery_statuses');
+        Schema::drop('time_slots');
         Schema::drop('storage_areas');
-        Schema::drop('storage_categories');
+        Schema::drop('storage_area_categories');
         Schema::drop('facilities');
         Schema::drop('vehicles');
         Schema::drop('vehicle_categories');
         Schema::drop('vehicle_models');
         Schema::drop('vehicle_makes');
         Schema::drop('suppliers_staff');
-        Schema::drop('suppliers_staff_roles');
         Schema::drop('suppliers');
-        Schema::drop('days');
+        Schema::drop('members');
+        Schema::drop('member_roles');
+        // Schema::drop('days');
+        Schema::drop('staff_roles');
         Schema::drop('honorifics');
     }
 }
