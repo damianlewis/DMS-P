@@ -1,7 +1,7 @@
 {
-	"name": "laravel/laravel",
-	"description": "The Laravel Framework.",
-	"keywords": ["framework", "laravel"],
+	"name": "damianlewis/dms-p",
+	"description": "Delivery Management System Prototype.",
+	"keywords": ["laravel","DMS-P"],
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*"

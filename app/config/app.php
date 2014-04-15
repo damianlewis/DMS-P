@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'key' => 'FF2gIFzruO0bBatqmc0LlcoizYkpqERx',
+	'key' => 'YourSecretKey!!!',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -105,8 +105,7 @@ return array(
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
-		'Illuminate\Workbench\WorkbenchServiceProvider',
-
+		'Illuminate\Workbench\WorkbenchServiceProvider'
 	),
 
 	/*
