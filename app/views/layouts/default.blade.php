@@ -21,12 +21,12 @@
                 </ul>
                 <section class="top-bar-section">
                     <ul class="left">
-                        <li><a href="/deliveries">Deliveries</a></li>
                         <li><a href="/facilities">Facilities</a></li>
+                        <li><a href="/suppliers">Suppliers</a></li>
+                        <li><a href="/vehicles">Vehicles</a></li>
+                        <li><a href="/deliveries">Deliveries</a></li>
                         <li class="has-dropdown">
-                            <a href="/suppliers">Suppliers</a>
                             <ul class="dropdown">
-                              <li><a href="/vehicles">Vehicles</a></li>
                               <li><a href="/staff">Staff</a></li>
                             </ul>
                         </li>
@@ -57,13 +57,16 @@
         <script src="/js/vendor/jquery.js"></script>
         <script src="/js/jquery.dataTables.js"></script>
         <script src="/js/foundation.min.js"></script>
-        <script src="js/foundation.dropdown.js"></script>
+        <script src="/js/foundation/foundation.dropdown.js"></script>
+        <script src="/js/foundation/foundation.abide.js"></script>
         <script>
             $(document).foundation();
             $(document).ready(function(){
                 $('#dmsp-table').dataTable();
             });
         </script>
+
+        @yield('scripts')
 
     </body>
 </html>

@@ -10,13 +10,24 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
+Route::resource('facilities', 'FacilitiesController');
 Route::resource('suppliers', 'SuppliersController');
 Route::resource('vehicles', 'VehiclesController');
 Route::resource('vehiclemakes', 'VehicleMakesController');
 Route::resource('vehiclemodels', 'VehicleModelsController');
-Route::resource('vehiclecategories', 'VehicleCategoriesController');
+//Route::resource('vehiclecategories', 'VehicleCategoriesController');
 
-Route::get('suppliers/{suppliers}/vehicles', array('as'=>'suppliers.vehicles', 'uses'=>'SuppliersController@showVehicles'));
-Route::get('suppliers/{suppliers}/vehicles/create', array('as'=>'suppliers.vehicles.create', 'uses'=>'SuppliersController@createVehicle'));
-Route::post('suppliers/vehicles', array('as'=>'suppliers.vehicles.store', 'uses'=>'SuppliersController@storeVehicle'));
+//Route::get('suppliers/{suppliers}/vehicles', array('as'=>'suppliers.vehicles', 'uses'=>'SuppliersController@showVehicles'));
+//Route::get('suppliers/{suppliers}/vehicles/create', array('as'=>'suppliers.vehicles.create', 'uses'=>'SuppliersController@createVehicle'));
+//Route::post('suppliers/vehicles', array('as'=>'suppliers.vehicles.store', 'uses'=>'SuppliersController@storeVehicle'));
+Route::get('api/dropdown', function()
+{
+    $input = Input::get('option');
+    $maker = VehicleMake::find($input);
+    $models = $maker->vehicleModels;
+
+    //return Response::eloquent($models->lists('id','model'));
+    //return Response::json(array($models->get(array('id','name')));
+
+    return $models;
+});
