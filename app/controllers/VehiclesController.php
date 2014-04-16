@@ -30,8 +30,7 @@ class VehiclesController extends \BaseController {
     {
         return View::make('vehicles.create')
             ->with('suppliers', Supplier::lists('name', 'id'))
-            ->with('vehicleModels', VehicleModel::lists('model', 'id'))
-            ->with('vehicleCategories', VehicleCategory::lists('category', 'id'));
+            ->with('vehicleMakes', VehicleMake::lists('make', 'id'));
     }
 
     /**
@@ -54,6 +53,19 @@ class VehiclesController extends \BaseController {
     }
 
     /**
+     * Display the specified supplier.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $vehicle = Vehicle::findOrFail($id);
+
+        return View::make('vehicles.show', compact('vehicle'));
+    }
+
+    /**
      * Show the form for editing the specified vehicle.
      *
      * @param  int  $id
@@ -63,7 +75,9 @@ class VehiclesController extends \BaseController {
     {
         $vehicle = Vehicle::find($id);
 
-        return View::make('vehicles.edit', compact('vehicle'));
+        return View::make('vehicles.edit', compact('vehicle'))
+            ->with('suppliers', Supplier::lists('name', 'id'))
+            ->with('vehicleModels', VehicleModel::lists('model', 'id'));
     }
 
     /**
@@ -85,7 +99,7 @@ class VehiclesController extends \BaseController {
 
         $vehicle->update($data);
 
-        return Redirect::route('vehicles.index');
+        return Redirect::route('vehicles.show', array($id));
     }
 
     /**
@@ -98,7 +112,7 @@ class VehiclesController extends \BaseController {
     {
         Vehicle::destroy($id);
 
-        return Redirect::back();
+        return Redirect::route('vehicles.index');
     }
 
 }

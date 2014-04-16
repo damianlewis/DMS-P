@@ -8,36 +8,30 @@
 @section('content')
     <div class="clearfix">
         <h1 class="left">Vehicles</h1>
-        <a href="{{ route('vehicles.create') }}" class="right button radius">Add New</a>
+        <a href="{{ route('vehicles.create') }}" class="right button radius">Add new vehicle</a>
     </div>
 
     <table class="fullWidth" id="dmsp-table">
         <thead>
             <tr>
                 <th width="10%">ID</th>
-                <th width="25%">Make</th>
-                <th width="25%">Model</th>
+                <th width="30%">Supplier</th>
+                <th width="17.50%">Make</th>
+                <th width="17.5%">Model</th>
                 <th width="15%">Registration #</th>
-                <th width="25%">Actions</th>
+                <th width="10%">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($vehicles as $vehicle)
                 <tr>
                     <td>{{ $vehicle->id }}</td>
+                    <td>{{ $vehicle->supplier->name }}</td>
                     <td>{{ $vehicle->vehicleModel->vehicleMake->make }}</td>
                     <td>{{ $vehicle->vehicleModel->model }}</td>
                     <td>{{ $vehicle->registration_number }}</td>
-                    <td>
-                        <ul class="button-group actions">
-                            <li><a href="{{ route('vehicles.edit', $vehicle->id) }}" class="button tiny">Edit</a></li>
-                            <li>
-                                {{ Form::open(['route'=>array('vehicles.destroy', $vehicle->id)]) }}
-                                    {{ Form::hidden('_method', 'DELETE') }}
-                                    {{ Form::submit('Delete', array('class'=>'button tiny alert'))}}
-                                {{ Form::close() }}
-                            </li>
-                        </ul>
+                    <td class="actions">
+                        <a href="{{ route('vehicles.show', $vehicle->id) }}" class="button tiny radius">View</a>
                     </td>
                 </tr>
             @endforeach

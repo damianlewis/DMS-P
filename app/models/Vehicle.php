@@ -8,7 +8,7 @@ class Vehicle extends \Eloquent {
     ];
 
     // Don't forget to fill this array
-    protected $fillable = ['supplier_id', 'vehicle_model_id', 'vehicle_category_id', 'registration_number'];
+    protected $fillable = ['supplier_id', 'vehicle_model_id', 'vehicle_category_id', 'registration_number', 'description'];
 
     public $errors;
 
@@ -25,10 +25,10 @@ class Vehicle extends \Eloquent {
     }
 
     // Each vehicle belongs to a single vehicle category
-    public function vehicleCategory()
-    {
-        return $this->belongsTo('VehicleCategory');
-    }
+    // public function vehicleCategory()
+    // {
+    //     return $this->belongsTo('VehicleCategory');
+    // }
 
     public function isValid()
     {
