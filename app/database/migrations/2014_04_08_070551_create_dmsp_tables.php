@@ -76,10 +76,11 @@ class CreateDmspTables extends Migration {
             $table->string('name')->unique();
             $table->string('address1');
             $table->string('address2');
-            $table->string('locality');
+            $table->string('city');
             $table->string('region');
             $table->string('post_code');
             $table->string('country');
+            $table->text('description');
             $table->timestamps();
         });
 
@@ -126,12 +127,12 @@ class CreateDmspTables extends Migration {
                 ->onDelete('set null');
         });
 
-        Schema::create('vehicle_categories', function(Blueprint $table)
-        {
-            $table->increments('id');
-            $table->string('category')->unique();
-            $table->timestamps();
-        });
+        // Schema::create('vehicle_categories', function(Blueprint $table)
+        // {
+        //     $table->increments('id');
+        //     $table->string('category')->unique();
+        //     $table->timestamps();
+        // });
 
         Schema::create('vehicles', function(Blueprint $table)
         {
@@ -139,8 +140,9 @@ class CreateDmspTables extends Migration {
             $table->integer('supplier_id')->unsigned()->nullable();
             // $table->integer('vehicle_make_id')->unsigned()->nullable();
             $table->integer('vehicle_model_id')->unsigned()->nullable();
-            $table->integer('vehicle_category_id')->unsigned()->nullable();
+            // $table->integer('vehicle_category_id')->unsigned()->nullable();
             $table->string('registration_number')->unique();
+            $table->text('description');
             $table->timestamps();
 
             $table->foreign('supplier_id')
@@ -155,9 +157,9 @@ class CreateDmspTables extends Migration {
                 ->references('id')->on('vehicle_models')
                 ->onDelete('set null');
 
-            $table->foreign('vehicle_category_id')
-                ->references('id')->on('vehicle_categories')
-                ->onDelete('set null');
+            // $table->foreign('vehicle_category_id')
+            //     ->references('id')->on('vehicle_categories')
+            //     ->onDelete('set null');
         });
 
         // Facility
@@ -165,11 +167,11 @@ class CreateDmspTables extends Migration {
         Schema::create('facilities', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('address1');
             $table->string('address2');
-            $table->string('locality');
-            $table->string('region');
+            $table->string('city');
+            $table->string('county');
             $table->string('post_code');
             $table->string('latitude');
             $table->string('longitude');
@@ -178,34 +180,34 @@ class CreateDmspTables extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('storage_area_categories', function(Blueprint $table)
-        {
-            $table->increments('id');
-            $table->string('category')->unique();
-            $table->text('description');
-            $table->timestamps();
-        });
+        // Schema::create('storage_area_categories', function(Blueprint $table)
+        // {
+        //     $table->increments('id');
+        //     $table->string('category')->unique();
+        //     $table->text('description');
+        //     $table->timestamps();
+        // });
 
-        Schema::create('storage_areas', function(Blueprint $table)
-        {
-            $table->increments('id');
-            $table->integer('facility_id')->unsigned();
-            $table->integer('storage_area_category_id')->unsigned()->nullable();
-            $table->integer('allocation')->unsigned();
-            $table->timestamps();
+        // Schema::create('storage_areas', function(Blueprint $table)
+        // {
+        //     $table->increments('id');
+        //     $table->integer('facility_id')->unsigned();
+        //     $table->integer('storage_area_category_id')->unsigned()->nullable();
+        //     $table->integer('allocation')->unsigned();
+        //     $table->timestamps();
 
-            $table->foreign('facility_id')
-                ->references('id')->on('facilities')
-                ->onDelete('restrict');
+        //     $table->foreign('facility_id')
+        //         ->references('id')->on('facilities')
+        //         ->onDelete('restrict');
 
-            $table->foreign('storage_area_category_id')
-                ->references('id')->on('storage_area_categories')
-                ->onDelete('set null');
+        //     $table->foreign('storage_area_category_id')
+        //         ->references('id')->on('storage_area_categories')
+        //         ->onDelete('set null');
 
-            // $table->foreign('day_id')
-            //     ->references('id')->on('days')
-            //     ->onDelete('set null');
-        });
+        //     // $table->foreign('day_id')
+        //     //     ->references('id')->on('days')
+        //     //     ->onDelete('set null');
+        // });
 
         Schema::create('time_slots', function(Blueprint $table)
         {
@@ -307,11 +309,11 @@ class CreateDmspTables extends Migration {
         Schema::drop('deliveries');
         Schema::drop('delivery_statuses');
         Schema::drop('time_slots');
-        Schema::drop('storage_areas');
-        Schema::drop('storage_area_categories');
+        // Schema::drop('storage_areas');
+        // Schema::drop('storage_area_categories');
         Schema::drop('facilities');
         Schema::drop('vehicles');
-        Schema::drop('vehicle_categories');
+        // Schema::drop('vehicle_categories');
         Schema::drop('vehicle_models');
         Schema::drop('vehicle_makes');
         Schema::drop('suppliers_staff');
