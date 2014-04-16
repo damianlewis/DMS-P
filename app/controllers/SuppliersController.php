@@ -60,8 +60,6 @@ class SuppliersController extends \BaseController {
     {
         $supplier = Supplier::findOrFail($id);
 
-        //dd($supplier->vehicles);
-
         return View::make('suppliers.show', compact('supplier'));
     }
 
@@ -113,39 +111,39 @@ class SuppliersController extends \BaseController {
         return Redirect::route('suppliers.index');
     }
 
-    public function showVehicles($id)
-    {
-        $supplier = Supplier::findOrFail($id);
+    // public function showVehicles($id)
+    // {
+    //     $supplier = Supplier::findOrFail($id);
 
-        //dd($supplier->vehicles);
+    //     //dd($supplier->vehicles);
 
-        return View::make('suppliers.vehicles', compact('supplier'));
-    }
+    //     return View::make('suppliers.vehicles', compact('supplier'));
+    // }
 
-    public function createVehicle($id)
-    {
-        $supplier = Supplier::findOrFail($id);
+    // public function createVehicle($id)
+    // {
+    //     $supplier = Supplier::findOrFail($id);
 
-        //dd($supplier->vehicles);
+    //     //dd($supplier->vehicles);
 
-        return View::make('suppliers.create_vehicle', compact('supplier'))
-            ->with('vehicleModels', VehicleModel::lists('model', 'id'))
-            ->with('vehicleCategories', VehicleCategory::lists('category', 'id'));
-    }
+    //     return View::make('suppliers.create_vehicle', compact('supplier'))
+    //         ->with('vehicleModels', VehicleModel::lists('model', 'id'))
+    //         ->with('vehicleCategories', VehicleCategory::lists('category', 'id'));
+    // }
 
-    public function storeVehicle()
-    {
-        $validator = Validator::make($data = Input::all(), Vehicle::$rules);
+    // public function storeVehicle()
+    // {
+    //     $validator = Validator::make($data = Input::all(), Vehicle::$rules);
 
-        if ($validator->fails())
-        {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
+    //     if ($validator->fails())
+    //     {
+    //         return Redirect::back()->withErrors($validator)->withInput();
+    //     }
 
-        Vehicle::create($data);
+    //     Vehicle::create($data);
 
-        $supplier = Supplier::findOrFail(Input::get('supplier_id'));
+    //     $supplier = Supplier::findOrFail(Input::get('supplier_id'));
 
-        return View::make('suppliers.vehicles', compact('supplier'));
-    }
+    //     return View::make('suppliers.vehicles', compact('supplier'));
+    // }
 }
