@@ -35,7 +35,7 @@
                     <td>{{ $vehicle->registration_number }}</td>
                     <td>
                         <ul class="button-group actions">
-                            <li><a href="{{ route('vehicles.edit', $vehicle->id) }}" class="button tiny">Edit</a></li>
+                            <li><a href="{{ route('suppliers.vehicles.edit', $vehicle->id) }}" class="button tiny">Edit</a></li>
                             <li>
                                 {{ Form::open(['route'=>array('vehicles.destroy', $vehicle->id)]) }}
                                     {{ Form::hidden('_method', 'DELETE') }}

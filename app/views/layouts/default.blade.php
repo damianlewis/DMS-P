@@ -21,7 +21,20 @@
                 </ul>
                 <section class="top-bar-section">
                     <ul class="left">
-                        <li><a href="/suppliers">Suppliers</a></li>
+                        <li><a href="/deliveries">Deliveries</a></li>
+                        <li><a href="/facilities">Facilities</a></li>
+                        <li class="has-dropdown">
+                            <a href="/suppliers">Suppliers</a>
+                            <ul class="dropdown">
+                              <li><a href="/vehicles">Vehicles</a></li>
+                              <li><a href="/staff">Staff</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="right">
+                        <li class="has-form">
+                            <a href="#" class="button">Logout</a>
+                        </li>
                     </ul>
                 </section>
             </nav>
@@ -44,6 +57,7 @@
         <script src="/js/vendor/jquery.js"></script>
         <script src="/js/jquery.dataTables.js"></script>
         <script src="/js/foundation.min.js"></script>
+        <script src="js/foundation.dropdown.js"></script>
         <script>
             $(document).foundation();
             $(document).ready(function(){
