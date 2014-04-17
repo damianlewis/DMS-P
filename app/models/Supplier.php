@@ -24,6 +24,12 @@ class Supplier extends \Eloquent {
         return $this->hasMany('Vehicle');
     }
 
+    // Each supplier HAS many supplier employees
+    public function supplierEmployees()
+    {
+        return $this->hasMany('SupplierEmployee');
+    }
+
     public function isValid()
     {
          $validation = Validator::make($this->attributes, static::$rules);

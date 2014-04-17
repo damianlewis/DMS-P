@@ -16,6 +16,7 @@ Route::resource('vehicles', 'VehiclesController');
 Route::resource('vehiclemakes', 'VehicleMakesController');
 Route::resource('vehiclemodels', 'VehicleModelsController');
 //Route::resource('vehiclecategories', 'VehicleCategoriesController');
+Route::resource('supplieremployees', 'SupplierEmployeesController');
 
 //Route::get('suppliers/{suppliers}/vehicles', array('as'=>'suppliers.vehicles', 'uses'=>'SuppliersController@showVehicles'));
 //Route::get('suppliers/{suppliers}/vehicles/create', array('as'=>'suppliers.vehicles.create', 'uses'=>'SuppliersController@createVehicle'));

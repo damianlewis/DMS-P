@@ -24,12 +24,8 @@
                         <li><a href="/facilities">Facilities</a></li>
                         <li><a href="/suppliers">Suppliers</a></li>
                         <li><a href="/vehicles">Vehicles</a></li>
+                        <li><a href="/supplieremployees">Supplier Employees</a></li>
                         <li><a href="/deliveries">Deliveries</a></li>
-                        <li class="has-dropdown">
-                            <ul class="dropdown">
-                              <li><a href="/staff">Staff</a></li>
-                            </ul>
-                        </li>
                     </ul>
                     <ul class="right">
                         <li class="has-form">
