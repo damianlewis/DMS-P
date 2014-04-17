@@ -77,6 +77,7 @@ class VehiclesController extends \BaseController {
 
         return View::make('vehicles.edit', compact('vehicle'))
             ->with('suppliers', Supplier::lists('name', 'id'))
+            ->with('vehicleMakes', VehicleMake::lists('make', 'id'))
             ->with('vehicleModels', VehicleModel::lists('model', 'id'));
     }
 

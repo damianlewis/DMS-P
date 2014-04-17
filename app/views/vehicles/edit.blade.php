@@ -2,7 +2,7 @@
 
 @section('breadcrumbs')
     <li><a href="/">Dashboard</a></li>
-    <li><a href="{{ route('vehicles.index') }}">vehicles</a></li>
+    <li><a href="{{ route('vehicles.index') }}">Vehicles</a></li>
     <li class="current">Edit</li>
 @stop
 
@@ -27,8 +27,17 @@
 
         <div class="row">
             <div class="small-12 large-6 columns">
+                {{ Form::label('make', 'Make:') }}
+                {{ Form::select('make', $vehicleMakes, $vehicle->vehicleModel->vehicleMake->id, array('name'=>'vehicle_make_id')) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-12 large-6 columns">
                 {{ Form::label('model', 'Model:') }}
-                {{ Form::select('model', $vehicleModels, $vehicle->vehicle_model_id, array('name'=>'vehicle_model_id')) }}
+                <select id="model" name="vehicle_model_id">
+                    <option value="{{ $vehicle->vehicleModel->id }}">{{ $vehicle->vehicleModel->model }}</option>
+                </select>
             </div>
         </div>
 
@@ -49,4 +58,8 @@
             </div>
         </div>
     {{ Form::close() }}
+@stop
+
+@section('scripts')
+    <script src="/js/vehicleModels.js"></script>
 @stop
