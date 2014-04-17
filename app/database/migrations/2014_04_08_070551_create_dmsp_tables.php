@@ -21,7 +21,7 @@ class CreateDmspTables extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('staff_roles', function(Blueprint $table)
+        Schema::create('employee_roles', function(Blueprint $table)
         {
             $table->increments('id');
             $table->string('role')->unique();
@@ -84,10 +84,10 @@ class CreateDmspTables extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('suppliers_staff', function(Blueprint $table)
+        Schema::create('supplier_employees', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('staff_role_id')->unsigned();
+            $table->integer('employee_role_id')->unsigned();
             $table->integer('supplier_id')->unsigned()->nullable();
             $table->integer('honorific_id')->unsigned()->nullable();
             $table->string('first_name');
@@ -95,8 +95,8 @@ class CreateDmspTables extends Migration {
             $table->string('phone_number')->unique();
             $table->timestamps();
 
-            $table->foreign('staff_role_id')
-                ->references('id')->on('staff_roles')
+            $table->foreign('employee_role_id')
+                ->references('id')->on('employee_roles')
                 ->onDelete('restrict');
 
             $table->foreign('supplier_id')
@@ -265,18 +265,18 @@ class CreateDmspTables extends Migration {
                 ->onDelete('cascade');
         });
 
-        Schema::create('deliveries_staff', function(Blueprint $table)
+        Schema::create('deliveries_employees', function(Blueprint $table)
         {
             $table->integer('delivery_id')->unsigned();
-            $table->integer('staff_id')->unsigned();
+            $table->integer('employee_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('delivery_id')
                 ->references('id')->on('deliveries')
                 ->onDelete('cascade');
 
-            $table->foreign('staff_id')
-                ->references('id')->on('suppliers_staff')
+            $table->foreign('employee_id')
+                ->references('id')->on('supplier_employees')
                 ->onDelete('restrict');
         });
 
@@ -304,7 +304,7 @@ class CreateDmspTables extends Migration {
     public function down()
     {
         Schema::drop('deliveries_vehicles');
-        Schema::drop('deliveries_staff');
+        Schema::drop('deliveries_employees');
         Schema::drop('time_slots_deliveries');
         Schema::drop('deliveries');
         Schema::drop('delivery_statuses');
@@ -316,12 +316,12 @@ class CreateDmspTables extends Migration {
         // Schema::drop('vehicle_categories');
         Schema::drop('vehicle_models');
         Schema::drop('vehicle_makes');
-        Schema::drop('suppliers_staff');
+        Schema::drop('supplier_employees');
         Schema::drop('suppliers');
         Schema::drop('members');
         Schema::drop('member_roles');
         // Schema::drop('days');
-        Schema::drop('staff_roles');
+        Schema::drop('employee_roles');
         Schema::drop('honorifics');
     }
 }
