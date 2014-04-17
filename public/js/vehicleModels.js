@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+$(document).ready(function(){
     $('#make').change(function() {
         $.get("/api/dropdown", 
             { option: $(this).val() }, 
