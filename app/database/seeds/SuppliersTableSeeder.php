@@ -7,7 +7,6 @@ class SuppliersTableSeeder extends Seeder {
 
     public function run()
     {
-
         $faker = Faker::create('en_GB');
 
         DB::table('suppliers')->delete();

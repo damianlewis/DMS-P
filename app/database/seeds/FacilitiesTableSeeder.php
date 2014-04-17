@@ -5,13 +5,15 @@ use Faker\Factory as Faker;
 
 class FacilitiesTableSeeder extends Seeder {
 
-	public function run()
-	{
-		$faker = Faker::create('en_GB');
+    public function run()
+    {
+        $faker = Faker::create('en_GB');
 
-		foreach(range(1, 10) as $index)
-		{
-			Facility::create([
+        DB::table('facilities')->delete();
+
+        foreach(range(1, 10) as $index)
+        {
+            Facility::create([
                 'name'          => $faker->company,
                 'address1'      => $faker->streetAddress,
                 'city'          => $faker->city,
@@ -21,8 +23,8 @@ class FacilitiesTableSeeder extends Seeder {
                 'longitude'     => $faker->longitude,
                 'capacity'      => $faker->randomNumber(1000, 4000),
                 'description'   => $faker->text($maxNbChars = 400)
-			]);
-		}
-	}
+            ]);
+        }
+    }
 
 }
