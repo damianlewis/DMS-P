@@ -29,6 +29,7 @@
                         <li><a href="/vehicles">Vehicles</a></li>
                         <li><a href="/supplieremployees">Supplier Employees</a></li>
                         <li><a href="/deliveries">Deliveries</a></li>
+                        <li><a href="/authorisation">Authorisation</a></li>
                     </ul>
                     <ul class="right">
                         <li class="has-form">
