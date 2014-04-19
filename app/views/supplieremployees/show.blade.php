@@ -24,9 +24,9 @@
 
     <hr>
 
-    <h5>Employed at supplier</h5>
-    <div class="vcard">
-        <span class="street-address">{{ $supplierEmployee->supplier->name }}</span>,
+    <h4>Employed at supplier</h4>
+    <div class="vcard fullWidth">
+        <h1 class="fn">{{ $supplierEmployee->supplier->name }}</h1>
         <span class="street-address">{{ $supplierEmployee->supplier->address1 }}</span>,
         @if(!empty($supplierEmployee->supplier->address2))
             <span class="street-address">{{ $supplierEmployee->supplier->address2 }}</span>,
@@ -37,7 +37,7 @@
         <span class="country">{{ $supplierEmployee->supplier->country }}</span>
     </div>
 
-    <h5>Details</h5>
+    <h4>Details</h4>
     <div class="panel">
         <p>Name: {{ $supplierEmployee->honorific->honorific }}. {{ $supplierEmployee->first_name }} {{ $supplierEmployee->last_name }}</p>
         <p>Phone number: {{ $supplierEmployee->phone_number }}</p>

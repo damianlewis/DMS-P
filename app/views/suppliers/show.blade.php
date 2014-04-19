@@ -24,8 +24,8 @@
 
     <hr>
 
-    <h5>Address</h5>
-    <div class="vcard">
+    <h4>Address</h4>
+    <div class="vcard fullWidth">
         <span class="street-address">{{ $supplier->address1 }}</span>,
         @if(!empty($supplier->address2))
             <span class="street-address">{{ $supplier->address2 }}</span>,
@@ -36,7 +36,7 @@
         <span class="country">{{ $supplier->country }}</span>
     </div>
 
-    <h5>Details</h5>
+    <h4>Details</h4>
     <div class="panel">
         <p>{{ $supplier->description }}</p>
         <p>Number of vehicles: {{ count($supplier->vehicles) }}</p>

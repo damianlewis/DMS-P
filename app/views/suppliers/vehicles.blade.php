@@ -15,7 +15,7 @@
 
     <hr>
     
-    <h5>Vehicles</h5>
+    <h4>Vehicles</h4>
     <table class="fullWidth" id="dmsp-table">
         <thead>
             <tr>

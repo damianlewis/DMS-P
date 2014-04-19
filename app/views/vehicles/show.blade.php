@@ -24,9 +24,9 @@
 
     <hr>
 
-    <h5>Belongs to supplier</h5>
-    <div class="vcard">
-        <span class="street-address">{{ $vehicle->supplier->name }}</span>,
+    <h4>Belongs to supplier</h4>
+    <div class="vcard fullWidth">
+        <h1 class="fn">{{ $vehicle->supplier->name }}</h1>
         <span class="street-address">{{ $vehicle->supplier->address1 }}</span>,
         @if(!empty($vehicle->supplier->address2))
             <span class="street-address">{{ $vehicle->supplier->address2 }}</span>,
@@ -37,7 +37,7 @@
         <span class="country">{{ $vehicle->supplier->country }}</span>
     </div>
 
-    <h5>Details</h5>
+    <h4>Details</h4>
     <div class="panel">
         <p>{{ $vehicle->description }}</p>
         <p>Make: {{ $vehicle->vehicleModel->vehicleMake->make }}</p>

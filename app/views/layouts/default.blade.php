@@ -62,6 +62,7 @@
         <script src="/js/foundation.min.js"></script>
         <script src="/js/foundation/foundation.dropdown.js"></script>
         <script src="/js/foundation/foundation.abide.js"></script>
+        <script src="/js/foundation/foundation.equalizer.js"></script>
         <script>
             $(document).foundation();
             $(document).ready(function(){

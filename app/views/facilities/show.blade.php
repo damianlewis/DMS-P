@@ -24,8 +24,8 @@
 
     <hr>
     
-    <h5>Address</h5>
-    <div class="vcard">
+    <h4>Address</h4>
+    <div class="vcard fullWidth">
         <span class="street-address">{{ $facility->address1 }}</span>,
         @if(!empty($facility->address2))
             <span class="street-address">{{ $facility->address2 }}</span>,
@@ -35,7 +35,7 @@
         <span class="postcode">{{ $facility->post_code }}</span>,
     </div>
 
-    <h5>Details</h5>
+    <h4>Details</h4>
     <div class="panel">
         <p>{{ $facility->description }}</p>
         <p>Capacity: {{ $facility->capacity }} m<sup>2</sup></p>
