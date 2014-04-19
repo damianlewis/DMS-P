@@ -40,3 +40,21 @@ Route::get('api/dropdown', function()
 
     return $models;
 });
+
+Route::get('api/dropdown/vehicles', function()
+{
+    $input = Input::get('option');
+    $supplier = Supplier::find($input);
+    $vehicles = $supplier->vehicles;
+
+    return $vehicles;
+});
+
+Route::get('api/dropdown/employees', function()
+{
+    $input = Input::get('option');
+    $supplier = Supplier::find($input);
+    $employees = $supplier->supplierEmployees;
+
+    return $employees;
+});
