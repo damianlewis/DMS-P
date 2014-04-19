@@ -38,8 +38,5 @@ Route::get('api/dropdown', function()
     $maker = VehicleMake::find($input);
     $models = $maker->vehicleModels;
 
-    //return Response::eloquent($models->lists('id','model'));
-    //return Response::json(array($models->get(array('id','name')));
-
     return $models;
 });
