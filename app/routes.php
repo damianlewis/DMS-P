@@ -33,6 +33,19 @@ Route::get('authorisation/exit/{drop}', array('as'=>'authorisation.exit', 'uses'
 //Route::get('suppliers/{suppliers}/vehicles', array('as'=>'suppliers.vehicles', 'uses'=>'SuppliersController@showVehicles'));
 //Route::get('suppliers/{suppliers}/vehicles/create', array('as'=>'suppliers.vehicles.create', 'uses'=>'SuppliersController@createVehicle'));
 //Route::post('suppliers/vehicles', array('as'=>'suppliers.vehicles.store', 'uses'=>'SuppliersController@storeVehicle'));
+
+// Route::get('register', 'HomeController@getRegister');
+// Route::get('login', 'HomeController@getLogin');
+
+// Route::post('login', 'HomeController@postLogin');
+// Route::post('register', 'HomeController@postRegister');
+
+// Route::group(array('before'=>'auth'), function()
+// {
+//     Route::get('admin', 'AdminController@index');
+//     Route::get('logout', 'HomeController@logout');
+// });
+
 Route::get('api/dropdown', function()
 {
     $input = Input::get('option');
