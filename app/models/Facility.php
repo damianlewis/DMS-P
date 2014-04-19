@@ -2,6 +2,8 @@
 
 class Facility extends \Eloquent {
 
+    protected $table = 'facilities';
+
     // Add your validation rules here
     public static $rules = [
         'name'         => 'required',

@@ -15,7 +15,7 @@
         <thead>
             <tr>
                 <th width="10%">ID</th>
-                <th width="15%">First anme</th>
+                <th width="15%">First name</th>
                 <th width="15%">Last name</th>
                 <th width="50%">Supplier</th>
                 <th width="10%">Actions</th>
