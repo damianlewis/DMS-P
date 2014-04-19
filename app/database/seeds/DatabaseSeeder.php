@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('EmployeeRolesTableSeeder');
         $this->call('SupplierEmployeesTableSeeder');
         
+        $this->call('TimeSlotsTableSeeder');
     }
 
 }

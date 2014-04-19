@@ -212,16 +212,16 @@ class CreateDmspTables extends Migration {
         Schema::create('time_slots', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('facility_id')->unsigned();
+            // $table->integer('facility_id')->unsigned();
             // $table->integer('day_id')->unsigned()->nullable();
             $table->time('start_time');
-            $table->time('end_time');
+            // $table->time('end_time');
             // $table->boolean('booked');
             $table->timestamps();
 
-            $table->foreign('facility_id')
-                ->references('id')->on('facilities')
-                ->onDelete('restrict');
+            // $table->foreign('facility_id')
+            //     ->references('id')->on('facilities')
+            //     ->onDelete('restrict');
 
             // $table->foreign('day_id')
             //     ->references('id')->on('days')
