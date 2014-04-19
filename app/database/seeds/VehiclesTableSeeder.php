@@ -37,7 +37,7 @@ class VehiclesTableSeeder extends Seeder {
         //     VehicleCategory::create(['category' => ucfirst($faker->unique()->word)]);
         // }
 
-        foreach(range(1, 10) as $index)
+        foreach(range(1, 100) as $index)
         {
             $supplier = Supplier::orderBy(DB::raw('RAND()'))->first();
             $vehicleModel = VehicleModel::orderBy(DB::raw('RAND()'))->first();

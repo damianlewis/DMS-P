@@ -10,19 +10,8 @@ class SupplierEmployeesTableSeeder extends Seeder {
         $faker = Faker::create('en_GB');
         
         DB::table('supplier_employees')->delete();
-        DB::table('employee_roles')->delete();
 
-        EmployeeRole::create([
-            'role'          => 'Driver',
-            'description'   => $faker->text($maxNbChars = 200)
-        ]);
-
-        EmployeeRole::create([
-            'role'          => 'Delivery assistant',
-            'description'   => $faker->text($maxNbChars = 200)
-        ]);
-
-        foreach(range(1, 10) as $index)
+        foreach(range(1, 100) as $index)
         {
             $supplier = Supplier::orderBy(DB::raw('RAND()'))->first();
             $role = EmployeeRole::orderBy(DB::raw('RAND()'))->first();
