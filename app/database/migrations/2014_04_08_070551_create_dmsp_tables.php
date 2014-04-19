@@ -234,6 +234,7 @@ class CreateDmspTables extends Migration {
         {
             $table->increments('id');
             $table->string('status')->unique();
+            $table->text('description');
             $table->timestamps();
         });
 
@@ -248,21 +249,6 @@ class CreateDmspTables extends Migration {
             $table->foreign('delivery_status_id')
                 ->references('id')->on('delivery_statuses')
                 ->onDelete('restrict');
-        });
-
-        Schema::create('time_slots_deliveries', function(Blueprint $table)
-        {
-            $table->integer('time_slot_id')->unsigned();
-            $table->integer('delivery_id')->unsigned();
-            $table->timestamps();
-
-            $table->foreign('time_slot_id')
-                ->references('id')->on('time_slots')
-                ->onDelete('restrict');
-
-            $table->foreign('delivery_id')
-                ->references('id')->on('deliveries')
-                ->onDelete('cascade');
         });
 
         Schema::create('deliveries_employees', function(Blueprint $table)
@@ -294,6 +280,69 @@ class CreateDmspTables extends Migration {
                 ->references('id')->on('vehicles')
                 ->onDelete('restrict');
         });
+
+        // Schema::create('deliveries_facilities', function(Blueprint $table)
+        // {
+        //     $table->integer('delivery_id')->unsigned();
+        //     $table->integer('facility_id')->unsigned();
+        //     $table->timestamps();
+
+        //     $table->foreign('delivery_id')
+        //         ->references('id')->on('deliveries')
+        //         ->onDelete('cascade');
+
+        //     $table->foreign('facility_id')
+        //         ->references('id')->on('facilities')
+        //         ->onDelete('restrict');
+        // });
+
+        // Schema::create('deliveries_time_slots', function(Blueprint $table)
+        // {
+        //     $table->integer('delivery_id')->unsigned();
+        //     $table->integer('time_slot_id')->unsigned();
+        //     $table->timestamps();
+
+        //     $table->foreign('delivery_id')
+        //         ->references('id')->on('deliveries')
+        //         ->onDelete('cascade');
+
+        //     $table->foreign('time_slot_id')
+        //         ->references('id')->on('time_slots')
+        //         ->onDelete('restrict');
+        // });
+        Schema::create('drop_statuses', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->string('status')->unique();
+            $table->text('description');
+            $table->timestamps();
+        });
+
+        Schema::create('drops', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->integer('delivery_id')->unsigned();
+            $table->integer('facility_id')->unsigned();
+            $table->integer('drop_status_id')->unsigned();
+            // $table->integer('time_slot_id')->unsigned();
+            $table->time('time_slot');
+            $table->timestamps();
+
+            $table->foreign('delivery_id')
+                ->references('id')->on('deliveries')
+                ->onDelete('cascade');
+
+            $table->foreign('facility_id')
+                ->references('id')->on('facilities')
+                ->onDelete('restrict');
+
+            // $table->foreign('time_slot_id')
+            //     ->references('id')->on('time_slots')
+            //     ->onDelete('restrict');
+            $table->foreign('drop_status_id')
+                ->references('id')->on('drop_statuses')
+                ->onDelete('restrict');
+        });
     }
 
     /**
@@ -303,9 +352,12 @@ class CreateDmspTables extends Migration {
      */
     public function down()
     {
+        // Schema::drop('deliveries_time_slots');
+        // Schema::drop('deliveries_facilities');
+        Schema::drop('drops');
+        Schema::drop('drop_statuses');
         Schema::drop('deliveries_vehicles');
         Schema::drop('deliveries_employees');
-        Schema::drop('time_slots_deliveries');
         Schema::drop('deliveries');
         Schema::drop('delivery_statuses');
         Schema::drop('time_slots');
