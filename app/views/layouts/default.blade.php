@@ -5,6 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>DMS-P</title>
         <link rel="stylesheet" href="/css/jquery.dataTables.css" />
+        <link rel="stylesheet" href="/css/themes/classic.css" />
+        <link rel="stylesheet" href="/css/themes/classic.date.css" />
+        <link rel="stylesheet" href="/css/themes/classic.time.css" />
         <link rel="stylesheet" href="/css/foundation.css" />
         <link rel="stylesheet" href="/css/custom.css" />
         <script src="/js/vendor/modernizr.js"></script>
@@ -52,6 +55,9 @@
 
         <script src="/js/vendor/jquery.js"></script>
         <script src="/js/jquery.dataTables.js"></script>
+        <script src="/js/picker.js"></script>
+        <script src="/js/picker.date.js"></script>
+        <script src="/js/picker.time.js"></script>
         <script src="/js/foundation.min.js"></script>
         <script src="/js/foundation/foundation.dropdown.js"></script>
         <script src="/js/foundation/foundation.abide.js"></script>

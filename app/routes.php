@@ -18,6 +18,10 @@ Route::resource('vehiclemodels', 'VehicleModelsController');
 //Route::resource('vehiclecategories', 'VehicleCategoriesController');
 Route::resource('supplieremployees', 'SupplierEmployeesController');
 
+Route::resource('deliveries', 'DeliveriesController');
+Route::resource('drops', 'DropsController');
+Route::get('deliveries/{deliveries}/drops/create', array('as'=>'drops.add', 'uses'=>'DropsController@add'));
+Route::get('deliveries/{deliveries}/cancel', array('as'=>'deliveries.cancel', 'uses'=>'DeliveriesController@cancel'));
 //Route::get('suppliers/{suppliers}/vehicles', array('as'=>'suppliers.vehicles', 'uses'=>'SuppliersController@showVehicles'));
 //Route::get('suppliers/{suppliers}/vehicles/create', array('as'=>'suppliers.vehicles.create', 'uses'=>'SuppliersController@createVehicle'));
 //Route::post('suppliers/vehicles', array('as'=>'suppliers.vehicles.store', 'uses'=>'SuppliersController@storeVehicle'));

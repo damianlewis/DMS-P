@@ -30,6 +30,12 @@ class Vehicle extends \Eloquent {
     //     return $this->belongsTo('VehicleCategory');
     // }
 
+    // Each vehicle belongs to a many deliveries
+    public function deliveries()
+    {
+        return $this->belongsToMany('Delivery', 'deliveries_vehicles', 'vehicle_id', 'delivery_id');
+    }
+
     public function isValid()
     {
         $validation = Validator::make($this->attributes, static::$rules);

@@ -18,6 +18,18 @@ class Facility extends \Eloquent {
 
     public $errors;
 
+    // Each facility HAS many drops
+    public function drops()
+    {
+        return $this->hasMany('Drop');
+    }
+
+    // // Each facility belongs to a many deliveries
+    // public function deliveries()
+    // {
+    //     return $this->belongsToMany('Delivery', 'deliveries_facilities', 'delivery_id', 'facility_id');
+    // }
+
     public function isValid()
     {
          $validation = Validator::make($this->attributes, static::$rules);
