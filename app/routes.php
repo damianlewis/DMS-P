@@ -29,6 +29,7 @@ Route::get('authorisation/drop/{drop}', array('as'=>'authorisation.drop', 'uses'
 Route::get('authorisation/entry/{drop}', array('as'=>'authorisation.entry', 'uses'=>'AuthorisationController@authoriseEntry'));
 Route::get('authorisation/exit/{drop}', array('as'=>'authorisation.exit', 'uses'=>'AuthorisationController@authoriseExit'));
 
+//Route::get('suppliers/{suppliers}/vehicles/create', array('as'=>'suppliers.vehicles.create', 'uses'=>'SuppliersController@createVehicle'));
 //Route::get('suppliers/{suppliers}/vehicles', array('as'=>'suppliers.vehicles', 'uses'=>'SuppliersController@showVehicles'));
 //Route::get('suppliers/{suppliers}/vehicles/create', array('as'=>'suppliers.vehicles.create', 'uses'=>'SuppliersController@createVehicle'));
 //Route::post('suppliers/vehicles', array('as'=>'suppliers.vehicles.store', 'uses'=>'SuppliersController@storeVehicle'));
