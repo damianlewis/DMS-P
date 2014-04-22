@@ -53,10 +53,12 @@ class CreateDmspTables extends Migration {
             $table->integer('honorific_id')->unsigned()->nullable();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('email')->unique();
+            // $table->string('email')->unique();
+            $table->string('email');
             $table->string('username')->unique();
             $table->string('password');
-            $table->boolean('status');
+            // $table->boolean('status');
+            $table->string('remember_token');
             $table->timestamps();
 
             $table->foreign('member_role_id')
