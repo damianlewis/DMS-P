@@ -44,10 +44,10 @@ class SessionsController extends \BaseController {
 
         if (Auth::attempt(Input::only('username', 'password')))
         {
-            return Auth::user();
+            return Redirect::route('home');
         }
 
-        return 'Failed';
+        return Redirect::back()->withInput();
     }
 
     /**
@@ -111,7 +111,12 @@ class SessionsController extends \BaseController {
         // return Redirect::route('sessions.index');
         Auth::logout();
 
-        return Redirect::route('sessions.login');
+        return Redirect::route('login');
+    }
+
+    public function permission()
+    {
+        return View::make('sessions.permission');
     }
 
 }
