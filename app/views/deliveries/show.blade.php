@@ -126,7 +126,7 @@
     <div id="deleteDropAlert" class="reveal-modal" data-reveal>
         <h2>Alert</h2>
         <p>Deleting this delivery drop will remove it from the database.</p>
-        {{ Form::open(array('route'=>array('drops.destroy', $drop->id), 'class'=>'actions')) }}
+        {{ Form::open(array('route'=>array('deliveries.destroy', $delivery->id), 'class'=>'actions')) }}
             {{ Form::hidden('_method', 'DELETE') }}
             {{ Form::submit('Contine', array('class'=>'right button small alert radius'))}}
         {{ Form::close() }}
