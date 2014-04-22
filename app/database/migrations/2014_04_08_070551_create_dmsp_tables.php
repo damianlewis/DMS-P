@@ -58,7 +58,7 @@ class CreateDmspTables extends Migration {
             $table->string('username')->unique();
             $table->string('password');
             // $table->boolean('status');
-            $table->string('remember_token');
+            $table->string('remember_token')->nullable();
             $table->timestamps();
 
             $table->foreign('member_role_id')
