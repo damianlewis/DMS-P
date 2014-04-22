@@ -2,106 +2,116 @@
 
 class SessionsController extends \BaseController {
 
-	/**
-	 * Display a listing of sessions
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$sessions = Session::all();
+    /**
+     * Display a listing of sessions
+     *
+     * @return Response
+     */
+    // public function index()
+    // {
+    //     $sessions = Session::all();
 
-		return View::make('sessions.index', compact('sessions'));
-	}
+    //     return View::make('sessions.index', compact('sessions'));
+    // }
 
-	/**
-	 * Show the form for creating a new session
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		return View::make('sessions.create');
-	}
+    /**
+     * Show the form for creating a new session
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return View::make('sessions.create');
+    }
 
-	/**
-	 * Store a newly created session in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$validator = Validator::make($data = Input::all(), Session::$rules);
+    /**
+     * Store a newly created session in storage.
+     *
+     * @return Response
+     */
+    public function store()
+    {
+        // $validator = Validator::make($data = Input::all(), Session::$rules);
 
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		}
+        // if ($validator->fails())
+        // {
+        //     return Redirect::back()->withErrors($validator)->withInput();
+        // }
 
-		Session::create($data);
+        // Session::create($data);
 
-		return Redirect::route('sessions.index');
-	}
+        // return Redirect::route('sessions.index');
 
-	/**
-	 * Display the specified session.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		$session = Session::findOrFail($id);
+        if (Auth::attempt(Input::only('username', 'password')))
+        {
+            return Auth::user();
+        }
 
-		return View::make('sessions.show', compact('session'));
-	}
+        return 'Failed';
+    }
 
-	/**
-	 * Show the form for editing the specified session.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		$session = Session::find($id);
+    /**
+     * Display the specified session.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    // public function show($id)
+    // {
+    //     $session = Session::findOrFail($id);
 
-		return View::make('sessions.edit', compact('session'));
-	}
+    //     return View::make('sessions.show', compact('session'));
+    // }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		$session = Session::findOrFail($id);
+    /**
+     * Show the form for editing the specified session.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    // public function edit($id)
+    // {
+    //     $session = Session::find($id);
 
-		$validator = Validator::make($data = Input::all(), Session::$rules);
+    //     return View::make('sessions.edit', compact('session'));
+    // }
 
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		}
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    // public function update($id)
+    // {
+    //     $session = Session::findOrFail($id);
 
-		$session->update($data);
+    //     $validator = Validator::make($data = Input::all(), Session::$rules);
 
-		return Redirect::route('sessions.index');
-	}
+    //     if ($validator->fails())
+    //     {
+    //         return Redirect::back()->withErrors($validator)->withInput();
+    //     }
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		Session::destroy($id);
+    //     $session->update($data);
 
-		return Redirect::route('sessions.index');
-	}
+    //     return Redirect::route('sessions.index');
+    // }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy()
+    {
+        // Session::destroy($id);
+
+        // return Redirect::route('sessions.index');
+        Auth::logout();
+
+        return Redirect::route('sessions.login');
+    }
 
 }
