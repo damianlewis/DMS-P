@@ -15,7 +15,7 @@
     <hr>
     
     <div class="clearfix">
-        <h3 class="left">Delivey date: {{ date("jS F Y", strtotime($delivery->date)) }}</h3>
+        <h3 class="left">Delivey date: <time id="delivery-date" datetime="{{ date("Y-m-d", strtotime($delivery->date)) }}">{{ date("jS F Y", strtotime($delivery->date)) }}</time></h3>
     </div>
 
     <hr>
