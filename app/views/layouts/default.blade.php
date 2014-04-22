@@ -24,18 +24,26 @@
                 </ul>
                 <section class="top-bar-section">
                     <ul class="left">
-                        <li><a href="/facilities">Facilities</a></li>
-                        <li><a href="/suppliers">Suppliers</a></li>
-                        <li><a href="/vehicles">Vehicles</a></li>
-                        <li><a href="/supplieremployees">Supplier Employees</a></li>
-                        <li><a href="/deliveries">Deliveries</a></li>
-                        <li><a href="/authorisation">Authorisation</a></li>
-                    </ul>
-                    <ul class="right">
-                        <li class="has-form">
-                            <a href="#" class="button">Logout</a>
-                        </li>
-                    </ul>
+                        @if (Auth::check())
+                            @if (Auth::user()->member_role_id <= 1)
+                                <li><a href="/facilities">Facilities</a></li>
+                                <li><a href="/suppliers">Suppliers</a></li>
+                                <li><a href="/vehicles">Vehicles</a></li>
+                                <li><a href="/supplieremployees">Supplier Employees</a></li>
+                                <li><a href="/deliveries">Deliveries</a></li>
+                            @endif
+                            @if (Auth::user()->member_role_id <= 2)
+                                <li><a href="/authorisation">Authorisation</a></li>
+                            @endif
+                        </ul>
+                        @if (Auth::check())
+                            <ul class="right">
+                                <li class="has-form">
+                                    <a href="{{ route('logout') }}" class="button">Logout</a>
+                                </li>
+                            </ul>
+                        @endif
+                    @endif
                 </section>
             </nav>
         </div>  

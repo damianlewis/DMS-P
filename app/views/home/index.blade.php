@@ -1,0 +1,15 @@
+@extends('layouts.default')
+
+@section('breadcrumbs')
+    <li class="current">Dashboard</li>
+@stop
+
+@section('content')
+    <h1>Welcome to DMS-P</h1>
+
+    <p>Putabam equidem satis, inquit, me dixisse. Quid igitur, inquit, eos responsuros putas? Neque solum ea communia, verum etiam paria esse dixerunt. Eadem fortitudinis ratio reperietur. Duo Reges: constructio interrete. Igitur neque stultorum quisquam beatus neque sapientium non beatus. Experiamur igitur, inquit, etsi habet haec Stoicorum ratio difficilius quiddam et obscurius. Non dolere, inquam, istud quam vim habeat postea videro; Eadem nunc mea adversum te oratio est. Sed in rebus apertissimis nimium longi sumus.</p>
+    
+    @unless (Auth::check())
+        <a href="{{ route('login') }}" class="button radius">Login</a>
+    @endunless
+@stop
