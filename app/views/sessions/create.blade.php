@@ -1,6 +1,7 @@
 @extends('layouts.login')
 
 @section('breadcrumbs')
+    <li><a href="/">Dashboard</a></li>
     <li class="current"><a href="/">Login</a></li>
 @stop
 
