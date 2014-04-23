@@ -7,6 +7,8 @@ class DeliveriesController extends \BaseController {
     public function __construct(Delivery $delivery)
     {
         $this->delivery = $delivery;
+        
+        $this->beforeFilter('auth.admin');
     }
 
     /**
@@ -16,24 +18,10 @@ class DeliveriesController extends \BaseController {
      */
     public function index()
     {
-        $deliveries = $this->delivery->where('delivery_status_id', '<', '3')->get();
+        $currentDeliveries = $this->delivery->where('delivery_status_id', '<', '3')->get();
 
-        foreach($deliveries as $delivery)
+        foreach($currentDeliveries as $delivery)
         {
-            // if (strtotime('- 1 day') > strtotime($delivery->date))
-            // {
-            //     $delivery->delivery_status_id = 5;
-            //     $delivery->save();
-
-            //     foreach($delivery->drops as $drop)
-            //     {
-            //         if ($drop->drop_status_id < 3)
-            //         {
-            //             $drop->drop_status_id = 5;
-            //             $drop->save();
-            //         }
-            //     }
-            // }
             $delivery->updateExpired();
         }
 

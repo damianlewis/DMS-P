@@ -7,6 +7,8 @@ class SuppliersController extends \BaseController {
     public function __construct(Supplier $supplier)
     {
         $this->supplier = $supplier;
+        
+        $this->beforeFilter('auth.admin');
     }
 
     /**

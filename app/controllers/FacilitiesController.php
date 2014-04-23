@@ -8,7 +8,7 @@ class FacilitiesController extends \BaseController {
     {
         $this->facility = $facility;
 
-        $this->beforeFilter('auth.admin', array('except' => 'getLogin'));
+        $this->beforeFilter('auth.admin');
     }
 
     /**

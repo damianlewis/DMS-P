@@ -2,6 +2,11 @@
 
 class AuthorisationController extends \BaseController {
 
+    public function __construct(Facility $facility)
+    {
+        $this->beforeFilter('auth.recpt');
+    }
+
     public function index()
     {
         $facilities = Facility::all();

@@ -7,6 +7,8 @@ class VehicleMakesController extends \BaseController {
     public function __construct(VehicleMake $vehicleMake)
     {
         $this->vehicleMake = $vehicleMake;
+        
+        $this->beforeFilter('auth.admin');
     }
 
     /**

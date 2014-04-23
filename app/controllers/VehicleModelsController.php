@@ -7,6 +7,8 @@ class VehicleModelsController extends \BaseController {
     public function __construct(VehicleModel $vehicleModel)
     {
         $this->vehicleModel = $vehicleModel;
+        
+        $this->beforeFilter('auth.admin');
     }
 
     /**
