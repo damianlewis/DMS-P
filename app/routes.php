@@ -25,6 +25,7 @@ Route::resource('deliveries', 'DeliveriesController');
 Route::resource('drops', 'DropsController');
 Route::get('deliveries/{deliveries}/drops/create', array('as'=>'drops.add', 'uses'=>'DropsController@add'));
 Route::get('deliveries/{deliveries}/cancel', array('as'=>'deliveries.cancel', 'uses'=>'DeliveriesController@cancel'));
+Route::get('drops/{drops}/cancel', array('as'=>'drops.cancel', 'uses'=>'DropsController@cancel'));
 
 // Receptionist / Authorisation
 Route::get('authorisation', array('as'=>'authorisation.index', 'uses'=>'AuthorisationController@index'));

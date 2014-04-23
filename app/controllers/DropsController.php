@@ -115,4 +115,15 @@ class DropsController extends \BaseController {
         return 'delete'.$id;
     }
 
+    public function cancel($id)
+    {
+        $drop = Drop::findOrFail($id);
+
+        $drop->drop_status_id = 4;
+        $drop->save();
+
+        return Redirect::route('deliveries.show', array($drop->delivery->id));
+
+    }
+
 }
