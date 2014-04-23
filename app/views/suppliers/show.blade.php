@@ -40,7 +40,7 @@
     <div class="panel">
         <p>{{ $supplier->description }}</p>
         <p>Number of vehicles: {{ count($supplier->vehicles) }}</p>
-        <p>Number of staff:  {{ count($supplier->staff) }}</p>
+        <p>Number of staff:  {{ count($supplier->supplierEmployees) }}</p>
     </div>
 
     <hr>

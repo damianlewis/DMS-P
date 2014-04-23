@@ -27,7 +27,7 @@
                     <td>{{ $supplier->id }}</td>
                     <td>{{ $supplier->name }}</td>
                     <td>{{ count($supplier->vehicles) }}</td>
-                    <td>{{ count($supplier->staff) }}</td>
+                    <td>{{ count($supplier->supplierEmployees) }}</td>
                     <td class="actions">
                         <a href="{{ route('suppliers.show', $supplier->id) }}" class="button tiny radius">View</a>
                     </td>
