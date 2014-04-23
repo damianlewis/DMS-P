@@ -40,6 +40,26 @@ class MembersTableSeeder extends Seeder {
             'username'          => 'thomas',
             'password'          => Hash::make('suppl')
         ]);
-    }
+
+        Member::create([
+            'member_role_id'  => 1,
+            'honorific_id'      => 1,
+            'first_name'        => 'Alex',
+            'last_name'         => 'Moghaddam',
+            'email'             => 'damian@damianlewis.net',
+            'username'          => 'alex',
+            'password'          => Hash::make('password')
+        ]);
+
+        Member::create([
+            'member_role_id'  => 1,
+            'honorific_id'      => 2,
+            'first_name'        => 'Martin',
+            'last_name'         => 'Malcolm-Brown',
+            'email'             => 'damian@damianlewis.net',
+            'username'          => 'martin',
+            'password'          => Hash::make('password')
+        ]);
+     }
 
 }
