@@ -52,8 +52,8 @@ class MembersTableSeeder extends Seeder {
         ]);
 
         Member::create([
-            'member_role_id'  => 1,
-            'honorific_id'      => 2,
+            'member_role_id'  => 2,
+            'honorific_id'      => 1,
             'first_name'        => 'Martin',
             'last_name'         => 'Malcolm-Brown',
             'email'             => 'damian@damianlewis.net',
