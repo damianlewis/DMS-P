@@ -33,7 +33,7 @@ class Vehicle extends \Eloquent {
     // Each vehicle belongs to a many deliveries
     public function deliveries()
     {
-        return $this->belongsToMany('Delivery', 'deliveries_vehicles', 'vehicle_id', 'delivery_id');
+        return $this->belongsToMany('Delivery', 'deliveries_vehicles', 'vehicle_id', 'delivery_id')->withTimestamps();
     }
 
     public function isValid()

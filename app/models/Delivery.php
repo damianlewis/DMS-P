@@ -27,13 +27,13 @@ class Delivery extends \Eloquent {
     // Each delivery belongs to a many supplier employees
     public function supplierEmployees()
     {
-        return $this->belongsToMany('SupplierEmployee', 'deliveries_employees', 'delivery_id', 'employee_id');
+        return $this->belongsToMany('SupplierEmployee', 'deliveries_employees', 'delivery_id', 'employee_id')->withTimestamps();
     }
 
     // Each delivery belongs to a many vehicles
     public function vehicles()
     {
-        return $this->belongsToMany('Vehicle', 'deliveries_vehicles', 'delivery_id', 'vehicle_id');
+        return $this->belongsToMany('Vehicle', 'deliveries_vehicles', 'delivery_id', 'vehicle_id')->withTimestamps();
     }
 
     public function updateExpired()

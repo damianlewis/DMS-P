@@ -50,7 +50,7 @@ class CreateDmspTables extends Migration {
         {
             $table->increments('id');
             $table->integer('member_role_id')->unsigned();
-            $table->integer('honorific_id')->unsigned()->nullable();
+            $table->integer('honorific_id')->unsigned();
             $table->string('first_name');
             $table->string('last_name');
             // $table->string('email')->unique();
@@ -67,7 +67,7 @@ class CreateDmspTables extends Migration {
                 
             $table->foreign('honorific_id')
                 ->references('id')->on('honorifics')
-                ->onDelete('set null');
+                ->onDelete('restrict');
         });
 
         // Suppliers
@@ -90,8 +90,8 @@ class CreateDmspTables extends Migration {
         {
             $table->increments('id');
             $table->integer('employee_role_id')->unsigned();
-            $table->integer('supplier_id')->unsigned()->nullable();
-            $table->integer('honorific_id')->unsigned()->nullable();
+            $table->integer('supplier_id')->unsigned();
+            $table->integer('honorific_id')->unsigned();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone_number')->unique();
@@ -103,11 +103,11 @@ class CreateDmspTables extends Migration {
 
             $table->foreign('supplier_id')
                 ->references('id')->on('suppliers')
-                ->onDelete('set null');
+                ->onDelete('cascade');
                 
             $table->foreign('honorific_id')
                 ->references('id')->on('honorifics')
-                ->onDelete('set null');
+                ->onDelete('restrict');
         });
 
         Schema::create('vehicle_makes', function(Blueprint $table)
@@ -120,13 +120,13 @@ class CreateDmspTables extends Migration {
         Schema::create('vehicle_models', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('vehicle_make_id')->unsigned()->nullable();
+            $table->integer('vehicle_make_id')->unsigned();
             $table->string('model')->unique();
             $table->timestamps();
 
             $table->foreign('vehicle_make_id')
                 ->references('id')->on('vehicle_makes')
-                ->onDelete('set null');
+                ->onDelete('cascade');
         });
 
         // Schema::create('vehicle_categories', function(Blueprint $table)
@@ -139,9 +139,9 @@ class CreateDmspTables extends Migration {
         Schema::create('vehicles', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('supplier_id')->unsigned()->nullable();
+            $table->integer('supplier_id')->unsigned();
             // $table->integer('vehicle_make_id')->unsigned()->nullable();
-            $table->integer('vehicle_model_id')->unsigned()->nullable();
+            $table->integer('vehicle_model_id')->unsigned();
             // $table->integer('vehicle_category_id')->unsigned()->nullable();
             $table->string('registration_number')->unique();
             $table->text('description');
@@ -149,7 +149,7 @@ class CreateDmspTables extends Migration {
 
             $table->foreign('supplier_id')
                 ->references('id')->on('suppliers')
-                ->onDelete('set null');
+                ->onDelete('cascade');
 
             // $table->foreign('vehicle_make_id')
             //     ->references('id')->on('vehicle_makes')
@@ -157,7 +157,7 @@ class CreateDmspTables extends Migration {
                 
             $table->foreign('vehicle_model_id')
                 ->references('id')->on('vehicle_models')
-                ->onDelete('set null');
+                ->onDelete('cascade');
 
             // $table->foreign('vehicle_category_id')
             //     ->references('id')->on('vehicle_categories')
@@ -258,14 +258,15 @@ class CreateDmspTables extends Migration {
             $table->integer('delivery_id')->unsigned();
             $table->integer('employee_id')->unsigned();
             $table->timestamps();
-
+            $table->primary(array('delivery_id', 'employee_id'));
+            
             $table->foreign('delivery_id')
                 ->references('id')->on('deliveries')
                 ->onDelete('cascade');
 
             $table->foreign('employee_id')
                 ->references('id')->on('supplier_employees')
-                ->onDelete('restrict');
+                ->onDelete('cascade');
         });
 
         Schema::create('deliveries_vehicles', function(Blueprint $table)
@@ -273,6 +274,7 @@ class CreateDmspTables extends Migration {
             $table->integer('delivery_id')->unsigned();
             $table->integer('vehicle_id')->unsigned();
             $table->timestamps();
+            $table->primary(array('delivery_id', 'vehicle_id'));
 
             $table->foreign('delivery_id')
                 ->references('id')->on('deliveries')
@@ -280,7 +282,7 @@ class CreateDmspTables extends Migration {
 
             $table->foreign('vehicle_id')
                 ->references('id')->on('vehicles')
-                ->onDelete('restrict');
+                ->onDelete('cascade');
         });
 
         // Schema::create('deliveries_facilities', function(Blueprint $table)
@@ -336,7 +338,7 @@ class CreateDmspTables extends Migration {
 
             $table->foreign('facility_id')
                 ->references('id')->on('facilities')
-                ->onDelete('restrict');
+                ->onDelete('cascade');
 
             // $table->foreign('time_slot_id')
             //     ->references('id')->on('time_slots')

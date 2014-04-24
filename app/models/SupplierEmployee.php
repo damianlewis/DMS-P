@@ -37,7 +37,7 @@ class SupplierEmployee extends \Eloquent {
     // Each supplier employee belongs to a many deliveries
     public function deliveries()
     {
-        return $this->belongsToMany('Delivery', 'deliveries_employees', 'employee_id', 'delivery_id');
+        return $this->belongsToMany('Delivery', 'deliveries_employees', 'employee_id', 'delivery_id')->withTimestamps();
     }
 
     public function isValid()
