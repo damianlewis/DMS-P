@@ -7,7 +7,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'dms_p',
+			'database'  => 'dmsp',
 			'username'  => 'dmsp',
 			'password'  => '1234',
 			'charset'   => 'utf8',
