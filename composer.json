@@ -35,7 +35,6 @@
     "minimum-stability": "stable",
     "require-dev": {
         "way/generators": "2.*",
-        "fzaninotto/faker": "1.4.*@dev",
-        "sebastian/comparator": "1.0.*@dev",
+        "fzaninotto/faker": "1.4.*@dev"
     }
 }
