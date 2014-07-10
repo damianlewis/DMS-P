@@ -21,7 +21,7 @@ class FacilitiesTableSeeder extends Seeder {
                 'post_code'     => $faker->postcode,
                 'latitude'      => $faker->latitude,
                 'longitude'     => $faker->longitude,
-                'capacity'      => $faker->randomNumber(1000, 4000),
+                'capacity'      => $faker->numberBetween(1000, 4000),
                 'description'   => $faker->text($maxNbChars = 400)
             ]);
         }
